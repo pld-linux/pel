@@ -6,7 +6,7 @@ Version:	0.8
 Release:	1
 License:	GPL v2
 Group:		Development/Languages/PHP
-Source0:	http://heanet.dl.sourceforge.net/pel/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/pel/%{name}-%{version}.tar.bz2
 # Source0-md5:	36cb1cb011c674625d722bdfbbdb38bc
 URL:		http://pel.sourceforge.net/
 BuildRequires:	rpm-php-pearprov
