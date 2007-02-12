@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.php
 Summary:	PEL: PHP EXIF Library
-Summary(pl):	PEL - biblioteka PHP EXIF
+Summary(pl.UTF-8):   PEL - biblioteka PHP EXIF
 Name:		pel
 Version:	0.8
 Release:	2
@@ -20,9 +20,9 @@ PEL is a library that will read and write EXIF headers found in JPEG
 images. It is written in pure PHP 5, which means that it does not
 depend on anything outside the core of PHP 5.
 
-%description -l pl
-PEL to biblioteka odczytuj±ca i zapisuj±ca nag³ówki EXIF w plikach
-obrazków JPEG. Jest napisana w czystym PHP 5, co oznacza, ¿e nie
+%description -l pl.UTF-8
+PEL to biblioteka odczytujÄ…ca i zapisujÄ…ca nagÅ‚Ã³wki EXIF w plikach
+obrazkÃ³w JPEG. Jest napisana w czystym PHP 5, co oznacza, Å¼e nie
 wymaga niczego spoza podstawowego PHP 5.
 
 %prep
