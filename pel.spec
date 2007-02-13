@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.php
 Summary:	PEL: PHP EXIF Library
-Summary(pl.UTF-8):   PEL - biblioteka PHP EXIF
+Summary(pl.UTF-8):	PEL - biblioteka PHP EXIF
 Name:		pel
 Version:	0.8
 Release:	2
