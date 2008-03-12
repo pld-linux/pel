@@ -1,19 +1,21 @@
-%include	/usr/lib/rpm/macros.php
+# TODO
+# - move gettext locale files to system dir
 Summary:	PEL: PHP EXIF Library
 Summary(pl.UTF-8):	PEL - biblioteka PHP EXIF
 Name:		pel
-Version:	0.8
-Release:	2
+Version:	0.9.1
+Release:	1
 License:	GPL v2
 Group:		Development/Languages/PHP
 Source0:	http://dl.sourceforge.net/pel/%{name}-%{version}.tar.bz2
-# Source0-md5:	36cb1cb011c674625d722bdfbbdb38bc
+# Source0-md5:	774654bf1b7b750cd2c1e37cff696da2
 URL:		http://pel.sourceforge.net/
-BuildRequires:	rpm-php-pearprov
+Requires:	php-common >= 4:5.0
 Requires:	php-pear
-Requires:	webserver(php) >= 5.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_appdir	%{_datadir}/php/%{name}
 
 %description
 PEL is a library that will read and write EXIF headers found in JPEG
@@ -25,30 +27,50 @@ PEL to biblioteka odczytująca i zapisująca nagłówki EXIF w plikach
 obrazków JPEG. Jest napisana w czystym PHP 5, co oznacza, że nie
 wymaga niczego spoza podstawowego PHP 5.
 
+%package phpdoc
+Summary:	Online manual for %{name}
+Summary(pl.UTF-8):	Dokumentacja online do %{name}
+Group:		Documentation
+
+%description phpdoc
+Documentation for %{name}.
+
+%description phpdoc -l pl.UTF-8
+Dokumentacja do %{name}.
+
 %prep
 %setup -q
 
+# remove phpdoc cachefiles
+find doc -name ???????????????????????????????? | xargs rm -rf
+
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{php_pear_dir}/%{name}/locale/{da,de,es,fr}/LC_MESSAGES
-
-install *.php $RPM_BUILD_ROOT%{php_pear_dir}/%{name}
+install -d $RPM_BUILD_ROOT%{_appdir}/locale/{da,de,es,fr}/LC_MESSAGES
+cp -a *.php $RPM_BUILD_ROOT%{_appdir}
 
 # install locales:
 for i in da de es fr; do
-	install locale/$i/LC_MESSAGES/*.mo $RPM_BUILD_ROOT%{php_pear_dir}/%{name}/locale/$i/LC_MESSAGES
+	install locale/$i/LC_MESSAGES/*.mo $RPM_BUILD_ROOT%{_appdir}/locale/$i/LC_MESSAGES
 done
+
+install -d $RPM_BUILD_ROOT%{_docdir}/%{name}
+cp -a doc/* $RPM_BUILD_ROOT%{_docdir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog INSTALL NEWS README TODO test doc
-%dir %{php_pear_dir}/%{name}
-%dir %{php_pear_dir}/%{name}/locale
-%lang(da) %{php_pear_dir}/%{name}/locale/da
-%lang(de) %{php_pear_dir}/%{name}/locale/de
-%lang(es) %{php_pear_dir}/%{name}/locale/es
-%lang(fr) %{php_pear_dir}/%{name}/locale/fr
-%{php_pear_dir}/%{name}/*.php
+%doc AUTHORS ChangeLog INSTALL NEWS README TODO test
+%dir %{_appdir}
+%{_appdir}/*.php
+%dir %{_appdir}/locale
+%lang(da) %{_appdir}/locale/da
+%lang(de) %{_appdir}/locale/de
+%lang(es) %{_appdir}/locale/es
+%lang(fr) %{_appdir}/locale/fr
+
+%files phpdoc
+%defattr(644,root,root,755)
+%{_docdir}/%{name}
