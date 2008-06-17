@@ -10,12 +10,12 @@ Group:		Development/Languages/PHP
 Source0:	http://dl.sourceforge.net/pel/%{name}-%{version}.tar.bz2
 # Source0-md5:	774654bf1b7b750cd2c1e37cff696da2
 URL:		http://pel.sourceforge.net/
+BuildRequires:	rpmbuild(macros) >= 1.461
 Requires:	php-common >= 4:5.0
-Requires:	php-pear
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_appdir	%{_datadir}/php/%{name}
+%define		_appdir	%{php_data_dir}/%{name}
 
 %description
 PEL is a library that will read and write EXIF headers found in JPEG
